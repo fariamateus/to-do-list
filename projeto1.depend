@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1751415873 source:c:\users\lucas\onedrive\documentos\mateus\projeto1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ajuda.h"
+
+1751311349 source:c:\users\lucas\onedrive\documentos\mateus\projeto1\ajuda.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ajuda.h"
+
+1751409170 c:\users\lucas\onedrive\documentos\mateus\projeto1\ajuda.h
+
