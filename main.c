@@ -3,6 +3,37 @@
 #include <string.h>
 #include "ajuda.h"
 
+void exibir(){
+
+
+
+system("cls");
+
+        FILE *arq;
+        char tarefa [150], *resultado;
+        int contador = 0;
+
+        arq = fopen("arquivo.txt", "r");
+
+        if(arq)
+        {
+            while(!feof(arq)){
+                resultado = fgets(tarefa, 150, arq);
+                if(resultado){
+                    printf("%d - %s\n", contador + 1, tarefa);
+                    contador++;
+            }
+            }
+            fclose(arq);
+        }
+
+        printf("o total de tarefas e: %d", contador);
+
+        return;
+
+}
+
+
 int opc = 0;
 char tarefa[150];
 
@@ -16,6 +47,8 @@ int main()
         printf("MENU\n\n1-exibir tarefas\n2-adicionar tarefa\n3-marcar tarefa como concluida\n4-remover tarefa\n5-fechar programa");
         do{printf("\n\ndigite o que deseja fazer:");
         scanf("%d", &opc);
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
         if(opc < 0 || opc > 5)
             printf("numero invalido, digite novamente.");
         }while(opc < 0 || opc > 5);
@@ -38,26 +71,26 @@ int main()
         system("cls");
 
         FILE *arq;
-        int qtdtar;
 
         arq = fopen("arquivo.txt", "a");
 
         if(arq)
         {
 
-        printf("digite o numero de tarefas que deseja adicionar:");
+        printf("digite as tarefas que deseja adicionar e o 1 para parar:");
 
-        do{
-            scanf("%d", &qtdtar);
-            if(qtdtar <0)
-                printf("numero invalido, digite novamente: ");
-            getchar();
-        }while(qtdtar<0);
-
-        for(int i = 0; i < qtdtar; i++){
+        for(int i = 0;; i++){
             printf("\n%d - ",i+1);
             fgets(tarefa, 150, stdin);
+            if( strcmp(tarefa, "1\n") == 0){
+                break;
+            }
+            if( strcmp(tarefa, "\n") == 0){
+                i--;
+                continue;
+            }
             fputs(tarefa,arq);
+
 
         }
         }
@@ -77,7 +110,7 @@ int main()
 
     arq = fopen("arquivo.txt","r");
     char tarefas [100][150];
-    char temp [150]; // variavel para armazenar temporariamente a tarefa que vai ser marcada como concluida ja que nao é possivel usar a mesma varivavel como argumento duas bezes em strcpy
+    char temp [150]; 
     int total = 0;
     int escolha;
 
@@ -143,11 +176,11 @@ int main()
         getchar();
     }while(escolha < 1 || escolha > total);
 
-    for(int i = escolha - 1; i < total - 1; i++){ // o -1 é necessario porque o indice do vetor comecar no 0, entao se vocd deseja mudar a tarefa 1, no indice no vetor ela estara localizada na posicao 0
+    for(int i = escolha - 1; i < total - 1; i++){ 
         strcpy(tarefas[i], tarefas[i + 1]);
 
     }
-    total--; // como uma tarefa foi apagada é necessario diminuir tambem o total de tarefas que estao salvas
+    total--; 
     arq = fopen("arquivo.txt", "w");
     for(int i = 0; i < total; i ++){
         fputs(tarefas[i],arq);

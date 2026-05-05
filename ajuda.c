@@ -26,7 +26,7 @@ system("cls");
             fclose(arq);
         }
 
-        printf("o total de tarefa e: %d", contador);
+        printf("o total de tarefas e: %d", contador);
 
         return;
 
